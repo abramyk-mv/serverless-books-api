@@ -6,7 +6,7 @@ const tableName = process.env.tableName;
 /**
  * Build update expression. Map values
  * @param forUpdate {object} - an object that includes book properties and their new values
- * @returns {{expressionAttributeValues: object, updateExpression: string}}
+ * @returns {{expressionAttributeValues: object, updateExpression: string, expressionAttributeNames: object}}
  */
 const buildUpdateParameters = (forUpdate) => {
     const updateExpression = [];

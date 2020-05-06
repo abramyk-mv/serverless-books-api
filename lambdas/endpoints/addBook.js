@@ -1,3 +1,4 @@
+const {v1: uuidV1} = require('uuid'); // note: UUIDs Version 1 is timestamp-based
 const Responses = require('../common/API_Responses');
 const Dynamo = require('../common/Dynamo');
 
@@ -14,10 +15,11 @@ exports.handler = async event => {
         return Responses._500({message: 'Failed to add a new book'});
     }
 
-    const book = JSON.parse(event.body);
+    const bookDetails = JSON.parse(event.body);
+    const completeBookInfo = {...bookDetails, ...{uuid: uuidV1()}};
 
     // todo: generate uuid, check if it exists
-    const newBook = await Dynamo.put(book, tableName)
+    const newBook = await Dynamo.put(completeBookInfo, tableName)
         .catch((err) => {
             console.log('An error has occurred in DynamoDB Write', err);
             return null;
@@ -27,5 +29,5 @@ exports.handler = async event => {
         return Responses._500({message: 'Failed to add a new book'});
     }
 
-    return Responses._200(newBook);
+    return Responses._200(completeBookInfo);
 };
