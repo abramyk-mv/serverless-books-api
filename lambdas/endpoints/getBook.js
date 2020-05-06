@@ -1,4 +1,7 @@
-const Responses = require('./API_Responses');
+const Responses = require('../common/API_Responses');
+const Dynamo = require('../common/Dynamo');
+
+const tableName = process.env.tableName;
 
 exports.handler = async event => {
     if (!event.pathParameters || !event.pathParameters.bookUuid) {
@@ -6,12 +9,17 @@ exports.handler = async event => {
     }
 
     const bookUuid = event.pathParameters.bookUuid;
-    const researchedBook = data.find(({uuid}) => uuid === bookUuid);
-    if (researchedBook) {
-        return Responses._200(researchedBook);
+    const book = await Dynamo.get(bookUuid, tableName)
+        .catch((err) => {
+            console.log('An error has occurred in DynamoDB Get', err);
+            return null;
+        });
+
+    if (!book) {
+        return Responses._400({message: 'Failed to get a book by uuid'});
     }
 
-    return Responses._400({message: 'Provided book uuid does not exist'});
+    return Responses._200(book);
 };
 
 const data = [
