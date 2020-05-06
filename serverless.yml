@@ -25,6 +25,12 @@ provider:
   runtime: nodejs12.x
   profile: serverless-admin
 
+plugins:
+  - serverless-webpack
+
+package:
+  individually: true
+
 # you can overwrite defaults here
 #  stage: dev
 #  region: us-east-1
