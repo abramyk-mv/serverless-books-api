@@ -82,8 +82,8 @@ functions:
           path: book/{bookUuid}
           method: GET
           cors: true
-  createBook:
-    handler: lambdas/endpoints/createBook.handler
+  addBook:
+    handler: lambdas/endpoints/addBook.handler
     events:
       - http:
           path: book/add

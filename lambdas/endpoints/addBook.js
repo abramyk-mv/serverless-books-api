@@ -6,7 +6,7 @@ const tableName = process.env.tableName;
 exports.handler = async event => {
     // todo: validate book data
     if (typeof event.body !== 'string') {
-        return Responses._500({message: 'Failed to create a new book'});
+        return Responses._500({message: 'Failed to add a new book'});
     }
 
     const book = JSON.parse(event.body);
@@ -19,7 +19,7 @@ exports.handler = async event => {
         });
 
     if (!newBook) {
-        return Responses._500({message: 'Failed to create a new book'});
+        return Responses._500({message: 'Failed to add a new book'});
     }
 
     return Responses._200(book);
