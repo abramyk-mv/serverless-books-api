@@ -19,6 +19,18 @@ const Dynamo = {
 
         return data.Item;
     },
+    // note: can retrieve up to 1MB of data; for larges sets pagination could be implemented
+    async getAll(TableName) {
+        const params = {TableName};
+
+        const data = await documentClient.scan(params).promise();
+
+        if (!data) {
+            throw Error(`Can not retrieve all data from ${TableName}`);
+        }
+
+        return data.Items;
+    },
     async put(data, TableName) {
         const params = {
             TableName,

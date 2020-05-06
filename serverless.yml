@@ -82,6 +82,13 @@ functions:
           path: book/{bookUuid}
           method: GET
           cors: true
+  getAllBooks:
+    handler: lambdas/endpoints/getAllBooks.handler
+    events:
+      - http:
+          path: books
+          method: GET
+          cors: true
   addBook:
     handler: lambdas/endpoints/addBook.handler
     events:
