@@ -18,7 +18,6 @@ exports.handler = async event => {
     const bookDetails = JSON.parse(event.body);
     const completeBookInfo = {...bookDetails, ...{uuid: uuidV1()}};
 
-    // todo: generate uuid, check if it exists
     const newBook = await Dynamo.put(completeBookInfo, tableName)
         .catch((err) => {
             console.log('An error has occurred in DynamoDB Write', err);
