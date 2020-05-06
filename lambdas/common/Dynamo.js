@@ -45,6 +45,22 @@ const Dynamo = {
 
         return res;
     },
+    async delete(uuid, TableName) {
+        const params = {
+            TableName,
+            Key: {
+                uuid,
+            },
+        };
+
+        const res = await documentClient.delete(params).promise();
+
+        if (!res) {
+            throw Error(`Unable to delete an item with uuid of ${uuid} from ${TableName}`);
+        }
+
+        return res;
+    },
 };
 
 module.exports = Dynamo;
