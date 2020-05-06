@@ -24,6 +24,13 @@ provider:
   name: aws
   runtime: nodejs12.x
   profile: serverless-admin
+  environment:
+    tableName: ${self:custom.tableName}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:*
+      Resource: '*'
 
 plugins:
   - serverless-webpack
@@ -69,7 +76,7 @@ custom:
 
 functions:
   getBook:
-    handler: lambdas/getBook.handler
+    handler: lambdas/endpoints/getBook.handler
     events:
       - http:
           path: book/{bookUuid}
