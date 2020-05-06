@@ -3,6 +3,11 @@ const Dynamo = require('../common/Dynamo');
 
 const tableName = process.env.tableName;
 
+/**
+ * @description Get book details
+ * @param event
+ * @returns {Promise<*|{headers, body, statusCode}>}
+ */
 exports.handler = async event => {
     if (!event.pathParameters || !event.pathParameters.bookUuid) {
         return Responses._400({message: 'Missing the book uuid parameter'})

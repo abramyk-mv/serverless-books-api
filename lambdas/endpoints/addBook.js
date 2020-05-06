@@ -3,6 +3,11 @@ const Dynamo = require('../common/Dynamo');
 
 const tableName = process.env.tableName;
 
+/**
+ * @description Add a new book
+ * @param event
+ * @returns {Promise<*|{headers, body, statusCode}>}
+ */
 exports.handler = async event => {
     // todo: validate book data
     if (typeof event.body !== 'string') {
