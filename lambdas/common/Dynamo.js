@@ -18,7 +18,21 @@ const Dynamo = {
         }
 
         return data.Item;
-    }
+    },
+    async put(data, TableName) {
+        const params = {
+            TableName,
+            Item: data,
+        };
+
+        const res = await documentClient.put(params).promise();
+
+        if (!res) {
+            throw Error(`There was an error fetching the data for uuid of ${data.uuid} from ${TableName}`);
+        }
+
+        return res;
+    },
 };
 
 module.exports = Dynamo;

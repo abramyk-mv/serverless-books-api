@@ -16,12 +16,13 @@ exports.handler = async event => {
         });
 
     if (!book) {
-        return Responses._400({message: 'Failed to get a book by uuid'});
+        return Responses._400({message: 'The book with a requested UUID does not exist'});
     }
 
     return Responses._200(book);
 };
 
+// todo: move it to seed data
 const data = [
     {
         uuid: '44343595-2c8e-40e7-a063-40b28970eec9',
