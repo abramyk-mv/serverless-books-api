@@ -45,6 +45,26 @@ const Dynamo = {
 
         return res;
     },
+    async update(uuid, TableName, UpdateExpression, ExpressionAttributeValues, ExpressionAttributeNames) {
+        const params = {
+            TableName,
+            Key: {
+                uuid,
+            },
+            UpdateExpression,
+            ExpressionAttributeValues,
+            ExpressionAttributeNames,
+            ReturnValues: 'UPDATED_NEW',
+        };
+
+        const res = await documentClient.update(params).promise();
+
+        if (!res) {
+            throw Error(`Unable to update an item with uuid of ${uuid} from ${TableName}`);
+        }
+
+        return res;
+    },
     async delete(uuid, TableName) {
         const params = {
             TableName,
