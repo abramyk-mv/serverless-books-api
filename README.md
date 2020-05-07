@@ -38,7 +38,7 @@ Book model scheme looks in the following way:
 	    "uuid": string,
 	    "name": string,
 	    "releaseDate": integer (timestamp),
-	    "authorName": string
+	    "author": string
 	}
 Response example:
 
@@ -59,7 +59,7 @@ Available book properties:
 	    "uuid": string,
 	    "name": string,
 	    "releaseDate": integer (timestamp),
-	    "authorName": string
+	    "author": string
 	}
 
 As a result, API returns an object with updated properties.
