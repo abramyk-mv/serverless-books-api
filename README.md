@@ -4,6 +4,7 @@
 **`GET - https://9mcsxpiynl.execute-api.us-east-1.amazonaws.com/dev/book/{bookUuid}`**
 
 The API gets book details according to its UUID.
+<br>
 Response body example:
 
     {
@@ -16,6 +17,7 @@ Response body example:
 **`GET - https://9mcsxpiynl.execute-api.us-east-1.amazonaws.com/dev/books`**  
   
 The API retrieves all available books.
+<br>
 Response body example:
 
     {
@@ -26,10 +28,11 @@ Response body example:
     }
 In case there are no books in a table, an API will return an empty array.
   
-  **`POST - https://9mcsxpiynl.execute-api.us-east-1.amazonaws.com/dev/book/add`**  
+**`POST - https://9mcsxpiynl.execute-api.us-east-1.amazonaws.com/dev/book/add`**  
 
 This allows to add a book to the table.
-*Book model scheme looks in the following way:*
+<br>
+Book model scheme looks in the following way:
 
     {
 	    "uuid": string,
@@ -46,13 +49,14 @@ Response example:
 	    "uuid": "473dd7e0-8ffb-11ea-b271-f1c15ed57148"
 	}
 
-  **`POST - https://9mcsxpiynl.execute-api.us-east-1.amazonaws.com/dev/book/{bookUuid}/update`**
+**`POST - https://9mcsxpiynl.execute-api.us-east-1.amazonaws.com/dev/book/{bookUuid}/update`**
   
 The API provides an ability to update existing book details.
-*Available book properties:*
+<br>
+Available book properties:
 
     {
-		"uuid": string,
+	    "uuid": string,
 	    "name": string,
 	    "releaseDate": integer (timestamp),
 	    "authorName": string
@@ -60,7 +64,7 @@ The API provides an ability to update existing book details.
 
 As a result, API returns an object with updated properties.
 
-  **`POST - https://9mcsxpiynl.execute-api.us-east-1.amazonaws.com/dev/book/{bookUuid}/delete`**  
+**`POST - https://9mcsxpiynl.execute-api.us-east-1.amazonaws.com/dev/book/{bookUuid}/delete`**  
 
 The API is used to delete a specific book from the table. A result of successful `update` operation is an empty object.
   
