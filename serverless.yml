@@ -19,6 +19,10 @@ service: serverless-books-api
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
 # frameworkVersion: "=X.X.X"
+plugins:
+  - serverless-webpack
+  - serverless-reqvalidator-plugin
+  - serverless-aws-documentation
 
 provider:
   name: aws
@@ -32,14 +36,38 @@ provider:
         - dynamodb:*
       Resource: '*'
 
-plugins:
-  - serverless-webpack
-
 package:
   individually: true
 
 custom:
   tableName: books
+  documentation:
+    api:
+      info:
+        version: '1.0.0'
+        title: API
+        description: Books API
+  models:
+    - name: RegisterAddBookRequest
+      contentType: "application/json"
+      schema:
+        properties:
+          name:
+            type: string
+          releaseDate:
+            type: number
+          author:
+            type: string
+    - name: RegisterUpdateBookRequest
+      contentType: "application/json"
+      schema:
+        properties:
+          name:
+            type: string
+          releaseDate:
+            type: number
+          author:
+            type: string
 
 # you can overwrite defaults here
 #  stage: dev
@@ -93,7 +121,25 @@ functions:
     handler: lambdas/endpoints/addBook.handler
     events:
       - http:
+          requestModels:
+            "application/json": RegisterAddBookRequest
           path: book/add
+          method: POST
+          cors: true
+  updateBook:
+    handler: lambdas/endpoints/updateBook.handler
+    events:
+      - http:
+          requestModels:
+            "application/json": RegisterUpdateBookRequest
+          path: book/{bookUuid}/update
+          method: POST
+          cors: true
+  deleteBook:
+    handler: lambdas/endpoints/deleteBook.handler
+    events:
+      - http:
+          path: book/{bookUuid}/delete
           method: POST
           cors: true
 #    The following are a few example events you can configure
