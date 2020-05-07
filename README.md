@@ -26,11 +26,11 @@ Response body example:
 	    "releaseDate": 1434750568000,
 	    "author": "Uchit Vyas"
     }
-In case there are no books in a table, an API will return an empty array.
+In case there are no books in a database, an API will return an empty array.
   
 **`POST - https://9mcsxpiynl.execute-api.us-east-1.amazonaws.com/dev/book/add`**  
 
-This allows to add a book to the table.
+This allows to add a book to the database.
 <br>
 Book model scheme looks in the following way:
 
@@ -66,7 +66,7 @@ As a result, API returns an object with updated properties.
 
 **`POST - https://9mcsxpiynl.execute-api.us-east-1.amazonaws.com/dev/book/{bookUuid}/delete`**  
 
-The API is used to delete a specific book from the table. A result of successful `update` operation is an empty object.
+The API is used to delete a specific book from the database. A result of successful `update` operation is an empty object.
   
 ## How to use API
 To test these APIs you need to have some tools that enables HTTP requests 
@@ -94,7 +94,6 @@ Ready-to-use data for checking APIs:
 ```
 
 ## Followups
-* validate requests
 * add linter to check code consistency  
 * write tests  
 * manage different environments and environment variables  

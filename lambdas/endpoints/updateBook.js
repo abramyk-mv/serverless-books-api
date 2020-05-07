@@ -1,5 +1,6 @@
 const Responses = require('../common/API_Responses');
 const Dynamo = require('../common/Dynamo');
+const {isValid} = require('../common/BookSchemeValidation');
 
 const tableName = process.env.tableName;
 
@@ -38,13 +39,17 @@ exports.handler = async event => {
         return Responses._400({message: 'Missing the book uuid parameter'})
     }
 
-    // todo: validate book data
     if (typeof event.body !== 'string') {
         return Responses._500({message: 'Failed to add a new book'});
     }
 
     const bookUuid = event.pathParameters.bookUuid;
     const forUpdate = JSON.parse(event.body);
+
+    if (!isValid(forUpdate)) {
+        return Responses._400({message: 'The data does not match a scheme'});
+    }
+
     const {updateExpression, expressionAttributeValues, expressionAttributeNames} = buildUpdateParameters(forUpdate);
 
     const res = await Dynamo.update(
@@ -63,5 +68,5 @@ exports.handler = async event => {
         return Responses._500({message: 'Unable to update a book'});
     }
 
-    return Responses._200(res, {message: 'A book was updated'});
+    return Responses._200({success: 'A book was updated'});
 };
