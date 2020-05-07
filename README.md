@@ -7,16 +7,16 @@ The API gets book details according to its UUID.
 Response body example:
 
     {
-    "uuid": "4f659890-8ff1-11ea-ba21-7d7ced63ba9e",
-    "name": "Mastering AWS Development",
-    "releaseDate": 1434750568000,
-    "author": "Uchit Vyas"
+        "uuid": "4f659890-8ff1-11ea-ba21-7d7ced63ba9e",
+        "name": "Mastering AWS Development",
+        "releaseDate": 1434750568000,
+        "author": "Uchit Vyas"
     }
     
-  **`GET - https://9mcsxpiynl.execute-api.us-east-1.amazonaws.com/dev/books`**  
+**`GET - https://9mcsxpiynl.execute-api.us-east-1.amazonaws.com/dev/books`**  
   
-  The API retrieves all available books.
-  Response body example:
+The API retrieves all available books.
+Response body example:
 
     {
 	    "uuid": "4f659890-8ff1-11ea-ba21-7d7ced63ba9e",
@@ -24,7 +24,7 @@ Response body example:
 	    "releaseDate": 1434750568000,
 	    "author": "Uchit Vyas"
     }
-In case there are no books in a table, an API will return an emprt array.
+In case there are no books in a table, an API will return an empty array.
   
   **`POST - https://9mcsxpiynl.execute-api.us-east-1.amazonaws.com/dev/book/add`**  
 
@@ -32,7 +32,7 @@ This allows to add a book to the table.
 *Book model scheme looks in the following way:*
 
     {
-		"uuid": string,
+	    "uuid": string,
 	    "name": string,
 	    "releaseDate": integer (timestamp),
 	    "authorName": string
@@ -62,10 +62,11 @@ As a result, API returns an object with updated properties.
 
   **`POST - https://9mcsxpiynl.execute-api.us-east-1.amazonaws.com/dev/book/{bookUuid}/delete`**  
 
-The API is used to delete a specific book from the table. A result of successfull `update` operation is an empty object.
+The API is used to delete a specific book from the table. A result of successful `update` operation is an empty object.
   
 ## How to use API
-To test these APIs you need to have some tools that enables HTTP requests like [Postman](https://www.getpostman.com/), [Insomnia](https://insomnia.rest/), or just [curl](https://curl.haxx.se/) 
+To test these APIs you need to have some tools that enables HTTP requests 
+like [Postman](https://www.getpostman.com/), [Insomnia](https://insomnia.rest/), or just [curl](https://curl.haxx.se/).
 ### Seed data  
 Ready-to-use data for checking APIs:
 ```
